@@ -1,11 +1,11 @@
-import { forwardRef } from "react";
+// filepath: /workspaces/Brittney-Ball-Portfolio/brittney-portfolio/src/components/skills.tsx
 
 const Skills = forwardRef(function Skills(
   { id, title, children, refCallback, moreHref, moreLabel },
-  _
+  _,
 ) {
   return (
-    <Skills id={id} ref={refCallback} className="skills">
+    <section id={id} ref={refCallback} className="skills">
       <div className="skills-head">
         <h2>{title}</h2>
         {moreHref && (
@@ -15,7 +15,7 @@ const Skills = forwardRef(function Skills(
         )}
       </div>
       <div className="skills-body">{children}</div>
-    </Skills>
+    </section>
   );
 });
 

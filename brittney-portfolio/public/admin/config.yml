@@ -1,0 +1,82 @@
+backend:
+  name: git-gateway # easiest if hosting on Netlify (uses Netlify Identity)
+  branch: main
+local_backend: true # lets you run CMS locally without auth
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "site"
+    label: "Site Settings"
+    files:
+      - file: "content/summary.md"
+        label: "Summary"
+        name: "summary"
+        fields:
+          - { label: "Summary", name: "body", widget: "markdown" }
+      - file: "content/skills.json"
+        label: "Skills"
+        name: "skills"
+        fields:
+          - {
+              label: "Skills (up to 50)",
+              name: "skills",
+              widget: "list",
+              field: { label: "Skill", name: "skill", widget: "string" },
+            }
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - {
+          label: "URL (optional)",
+          name: "href",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "speaking"
+    label: "Speaking Engagements"
+    folder: "content/speaking"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title / Talk", name: "title", widget: "string" }
+      - { label: "Event", name: "event", widget: "string", required: false }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Link", name: "href", widget: "string", required: false }
+      - { label: "Notes", name: "body", widget: "markdown", required: false }
+
+  - name: "publications"
+    label: "Publications"
+    folder: "content/publications"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Outlet", name: "outlet", widget: "string", required: false }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Link", name: "href", widget: "string", required: false }
+      - {
+          label: "Abstract (optional)",
+          name: "body",
+          widget: "markdown",
+          required: false,
+        }
+
+  - name: "community"
+    label: "Community Involvement"
+    folder: "content/community"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", required: false }
+      - { label: "Link", name: "href", widget: "string", required: false }
+      - { label: "Details", name: "body", widget: "markdown", required: false }
